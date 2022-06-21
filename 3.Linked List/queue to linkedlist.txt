@@ -1,0 +1,98 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+     public static void main(String[] args)
+     {
+       QueueLinkedList ql=new QueueLinkedList();
+       ql.enqueue(10);
+       ql.enqueue(20);
+       ql.enqueue(30);
+       ql.enqueue(40);
+        ql.printl();
+       ql.dequeue();
+       ql.printl();
+       System.out.println(ql.qsize());
+        ql.enqueue(40);
+        ql.printl();
+        System.out.println(ql.isEmpty());
+        System.out.println(ql.peek());
+
+     }	
+}
+class QueueLinkedList
+{
+    Node front=null,rear=null;
+    int count = 0;
+
+    private class Node
+    {
+        int x;
+        Node next;  
+        Node(int x)
+        {
+            this.x=x;
+            this.next=next;
+        }
+    }
+    QueueLinkedList()
+    {
+        this.front=null;
+    }
+    public void enqueue(int x)
+    {
+        Node newNode=new Node(x);
+        if(front == null)
+        {
+            front=newNode;
+            rear=newNode;
+        }
+       else
+       {
+           rear.next=newNode;
+           rear=newNode;
+       }       
+       count +=1;
+    }
+    public void dequeue()
+    {
+       
+        if(front == null)
+        {
+            System.out.print("Queue underflow");
+            return;
+        }
+        else
+        {            
+            front=front.next;
+        }
+        count -=1;
+    }
+    public int peek()
+    {
+        if(front == null)
+        {
+            System.out.println("-1");
+        }
+        return front.x;
+    }
+    public boolean isEmpty()
+    {
+        return front == null && rear == null;
+    }
+    public int qsize()
+    {
+        return count;
+    }
+    public void printl()
+    {
+        Node temp=front;
+        while(temp != null)
+        {
+            System.out.print(temp.x + " ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+
+}

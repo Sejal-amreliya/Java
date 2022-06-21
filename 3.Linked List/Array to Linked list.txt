@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.*;
+
+class Main
+{   
+     public static void main(String[] args) 
+     {
+        int[] arr={1,44,356,12,345,670};
+        LinkedListToArray ll=new LinkedListToArray();
+        for(int i=0;i<arr.length;i++)
+        {
+            ll.addLast(arr[i]);
+        }
+        ll.display();
+     }
+     
+}
+class LinkedListToArray
+{
+    Node head;
+    Node tail;
+    int size;
+    class Node
+    {
+        int x;
+        Node next;
+    }
+    public void addLast(int x)
+    {
+        Node newNode=new Node();
+        newNode.x=x;
+        newNode.next=null;
+        if(head==null)
+        {
+            head=tail=newNode;
+        }
+        else
+        {
+           tail.next=newNode;
+           tail=newNode;
+        }
+        size++;
+    }
+    public void display()
+    {
+        Node cur=head;
+        while(cur != null)
+        {
+            System.out.print(cur.x+" ");
+            cur=cur.next;
+
+        }
+        System.out.println();
+    }
+  /*  public void convert(int[] arr)
+    {   
+        LinkedListToArray ll=new LinkedListToArray();
+        for(int i=0;i<arr.length;i++)
+        {
+            ll.addLast(arr[i]);
+        }
+    }*/
+}

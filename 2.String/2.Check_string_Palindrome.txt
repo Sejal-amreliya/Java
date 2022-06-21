@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+class Main{
+   
+    public static void main(String[] args)
+    {
+        String str="nitin";
+        int start=0;
+        int end=str.length()-1;
+        boolean check=true;
+        while(start<end)
+        {
+            if(str.charAt(start) != str.charAt(end))
+            {
+                check=false;
+                break;
+            }
+        }
+        if(check)
+        {
+            System.out.print("Palindrome");
+        }
+        else
+        {
+            System.out.print("Not Palindrome");
+        }
+    }	
+}

@@ -1,0 +1,29 @@
+class GfG{
+    //Function to reverse the queue.
+    public Queue<Integer> rev(Queue<Integer> q){
+        //add code here.
+        Stack<Integer> st=new Stack<>();
+        int size=q.size();
+        while(!q.isEmpty())
+        {
+            st.push(q.remove());
+        }
+        while(!st.isEmpty())
+        {
+            q.add(st.pop());
+        }
+        return q;
+    }
+}
+
+Input:
+6
+4 3 1 10 2 6
+
+Output: 
+6 2 10 1 3 4
+
+Explanation: 
+After reversing the given
+elements of the queue , the resultant
+queue will be 6 2 10 1 3 4.

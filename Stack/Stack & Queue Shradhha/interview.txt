@@ -1,0 +1,8 @@
+JDK JRE JVM
+Collections
+threding
+comparable comparator
+C realization
+
+w3 school sql query
+

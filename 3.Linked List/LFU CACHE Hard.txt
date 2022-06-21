@@ -1,0 +1,79 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+   
+    public static void main(String[] args)
+    {
+        LFUCache cache=new LFUCache(2);
+        cache.put(1,10);
+        cache.put(2,20);
+        cache.put(3,30);
+        System.out.print(cache.get(2));
+    }
+}
+class LFUCache {
+ private class Node {
+
+    int val;
+    int count;
+
+    Node(int val, int count) {
+      this.val = val;
+      this.count = count;
+    }
+  }
+
+  private final Map<Integer, Node> keyToNode;
+  private final Map<Integer, LinkedHashSet<Integer>> countToKeys;
+
+  private final int capacity;
+  private int min = 0;
+
+  public LFUCache(int capacity) {
+    this.countToKeys = new HashMap<>();
+    this.keyToNode = new HashMap<>();
+    this.capacity = capacity;
+  }
+
+  public int get(int key) {
+    if (keyToNode.containsKey(key)) {
+      Node n = keyToNode.get(key);
+      updateCount(n, key);
+      return n.val;
+    }
+    return -1;
+  }
+
+  public void put(int key, int value) {
+    if (capacity == 0) return;
+    if (keyToNode.containsKey(key)) {
+      Node n = keyToNode.get(key);
+      n.val = value;
+nt       updateCount(n, key);
+    } else {
+      Node n = new Node(value, 1);
+      if (keyToNode.size() == capacity) {
+        LinkedHashSet<Integer> keys = countToKeys.get(min);
+        int keyToRemove = keys.iterator().next();
+        keyToNode.remove(keyToRemove);
+        keys.remove(keyToRemove);
+      }
+      keyToNode.put(key, n);
+      countToKeys.putIfAbsent(n.count, new LinkedHashSet<>());
+      countToKeys.get(n.count).add(key);
+      min = 1;
+    }
+  }
+
+  private void updateCount(Node n, int key) {
+    countToKeys.get(n.count).remove(key);
+    if (countToKeys.get(n.count).size() == 0) {
+      countToKeys.remove(n.count);
+      if (n.count == min) min++;
+    }
+    n.count++;
+    countToKeys.putIfAbsent(n.count, new LinkedHashSet<>());
+    countToKeys.get(n.count).add(key);
+  }
+}

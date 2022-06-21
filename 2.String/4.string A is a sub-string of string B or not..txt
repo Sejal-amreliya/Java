@@ -1,0 +1,36 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+	public static void main (String[] args) {
+                      // Your code here
+		Scanner sc=new Scanner(System.in);
+		String A=sc.next();
+		String B=sc.next();
+		int i=0;
+		int j=0;
+		boolean c=false;
+		while(i<A.length() && j<B.length())
+		{
+			if(A.charAt(i) == B.charAt(j))
+			{
+				i++;
+			}
+			if(A.length()==i)
+			{
+				c=true;
+			}
+			j++;
+		}
+		if(c)
+		{
+			System.out.print("Yes");
+		}
+		else
+		{
+			System.out.print("No");
+		}
+	}
+}

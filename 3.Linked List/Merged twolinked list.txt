@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+    public static Node mergedTwoLL(Node head,Node head1)
+    {
+        Node temp = new Node(-1);
+        Node prev=temp;
+
+        Node c1=head;
+        Node c2=head1;
+
+        while(c1 != null && c2 != null)
+        {
+            if(c1.x < c2.x)
+            {
+                prev.next=c1;
+                c1=c1.next;
+            }
+            else
+            {
+                prev.next=c2;
+                c2=c2.next;
+            }
+            prev=prev.next;
+        }
+        prev.next = c1 != null ? c1 : c2 ;
+         
+        return temp.next;
+    }
+    public static void printl(Node head)
+    {
+        while(head != null)
+        {
+            System.out.print(head.x+" ");
+            head=head.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args)
+    {
+        Node head=new Node(0);
+        head.next=new Node(2);
+        head.next.next=new Node(4);
+        head.next.next.next=new Node(7);
+        head.next.next.next.next=new Node(26);
+        head.next.next.next.next.next=new Node(30);
+        printl(head);
+
+        Node head1=new Node(2);
+        head1.next=new Node(5);
+        head1.next.next=new Node(14);
+        head1.next.next.next=new Node(18);
+        printl(head1);
+        Node ans=mergedTwoLL(head,head1);
+        printl(ans);
+    }
+}
+class Node
+{
+    int x;
+    Node next;
+    Node(int x)
+    {
+        this.x=x;
+        this.next=next;
+    }
+}

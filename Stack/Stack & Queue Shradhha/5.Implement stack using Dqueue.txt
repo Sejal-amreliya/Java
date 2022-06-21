@@ -1,0 +1,167 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+    
+    public static void main(String[] args)
+    {
+        Stack stk = new Stack();
+        stk.push(7);
+        stk.push(8);
+        System.out.print("Stack: ");
+        stk.display();
+        stk.pop();
+        System.out.print("Stack: ");
+        stk.display();
+        Queue que = new Queue();
+        que.enqueue(12);
+        que.enqueue(13);
+        System.out.print("Queue: ");
+        que.display();
+        que.dequeue();
+        System.out.print("Queue: ");
+        que.display();
+        System.out.println("Size of stack is " +stk.size());
+        System.out.println("Size of queue is " +que.size());
+       
+    }
+}
+class Dqueue
+{
+    int val;
+    Dqueue next;
+    Dqueue prev;
+}
+class DqueueIm
+{
+    Dqueue head,tail;
+    DqueueIm()
+    {
+        head=null;
+        tail=null;
+    }
+    boolean isEmpty()
+    {
+        if(head == null)
+            return true;
+
+        return false;
+    }
+    int size()
+    {
+        if(head == null)
+        return 0;
+        int len=0;
+        while(head !=null)
+        {
+            len++;
+            head=head.next;
+        }
+        return len;
+    }
+    void add_first(int x)
+    {
+        Dqueue temp=new Dqueue();
+        temp.val=x;
+        if(head == null)
+        {
+            head=tail=temp;
+            temp.next=null;
+            temp.prev=null;
+        }
+        else
+        {
+            head.prev=temp;
+            temp.next=head;
+            temp.prev=null;
+            head=temp;
+        }
+    }
+    void insert_last(int x)
+    {
+        Dqueue temp=new Dqueue();
+        temp.val=x;
+        if(head == null)
+        {
+            head=tail=temp;
+            temp.next=null;
+            temp.prev=null;
+        }
+        else
+        {
+            tail.next=temp;
+            temp.next=null;
+            temp.prev=tail;
+            tail=temp;
+        }   
+    }
+    void remove_first()
+    {
+        if(!isEmpty())
+        {
+            Dqueue temp=head;
+            head=head.next;
+            head.prev=null;
+        }
+    }
+    void remove_last()
+    {
+        if(!isEmpty())
+        {
+            Dqueue temp=tail;
+            tail=tail.prev;
+            tail.next=null;
+        }
+    }
+    void display()
+    {        
+        Dqueue temp=head;
+        while(temp != null)
+        {
+            System.out.print(temp.val+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+
+}
+class Stack
+{
+    DqueueIm s=new DqueueIm();
+    void push(int x)
+    {
+        s.insert_last(x);
+    }
+    void pop()
+    {
+        s.remove_last();
+    }
+    int size()
+    {
+        return s.size();
+    }
+    void display()
+    {
+        s.display();
+    }
+}
+class Queue
+{
+    DqueueIm q=new DqueueIm();
+    void enqueue(int x)
+    {
+        q.add_first(x);
+    }   
+    void dequeue()
+    {
+        q.remove_first();
+    }
+    void display()
+    {
+        q.display();
+    }
+    int size()
+    {
+        return q.size();
+    }
+}

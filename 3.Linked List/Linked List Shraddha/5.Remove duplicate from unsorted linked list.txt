@@ -1,0 +1,19 @@
+ HashSet<Integer> rdp = new HashSet<>();
+        if(head==null) return null;
+        Node temp=head;
+        rdp.add(temp.data);
+        
+        while(temp.next!=null)
+        {
+           if(!rdp.contains(temp.next.data))
+           {
+               rdp.add(temp.next.data);
+               temp=temp.next;
+           }
+           else
+           {
+               temp.next=temp.next.next;
+           }
+        }
+        
+        return head;

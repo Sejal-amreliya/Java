@@ -1,0 +1,90 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+     public static void main(String[] args)
+     {
+       LinkedListStack ll=new LinkedListStack();
+          ll.push(20);
+          ll.push(30);
+          ll.push(40);
+          ll.push(50);
+          ll.printList();
+          ll.pop();
+          ll.printList();
+          System.out.println(ll.peek());
+     }	
+}
+class LinkedListStack
+{
+     Node head;
+     private class Node
+     {
+          int x;
+          Node next;  
+          Node(int x)
+          {
+               this.x=x;
+               this.next=next;
+          }
+     }
+     LinkedListStack()
+     {
+          this.head=null;
+     }
+     public void push(int x)
+     {
+          
+          Node newnode =new Node(x);
+          newnode.next=head;
+          head=newnode;
+     }
+     public void pop()
+     {
+          if(head == null)
+          {
+               System.out.println("Stack UnderFlow");
+               return;
+          }
+          else
+          {
+               head=head.next;
+          }
+          
+     }
+     public boolean isEmpty()
+     {
+          return head==null;
+     }
+     public int peek()
+     {
+          if(!isEmpty())
+          {
+               return head.x;
+          }
+          else
+          {
+               System.out.print("Stack is Empty");
+               return -1;
+          }
+     }
+     public void printList()
+     {
+          if(head == null)
+          {
+               System.out.println("Stack UnderFlow");
+               return;
+          }
+          else
+          {
+               Node temp=head;
+               while(temp != null)
+               {
+               System.out.print(temp.x+" ");
+               temp=temp.next;
+               }
+               System.out.println();
+          }
+          
+     }
+}

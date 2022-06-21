@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+class Main
+{
+   /* public static void middle(Node head)
+    {
+      Node slow=head;
+      Node fast=head;
+      while(fast.next != null && fast.next.next != null)
+      {
+        slow=slow.next;
+        fast=fast.next.next;
+      }
+      System.out.print(slow.x);
+    }*/
+    public static boolean balancedOrNot(String s)
+    {
+        Stack<Character> st=new Stack<>();        
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            if(c == '(' || c=='{' || c=='[')   
+            {
+              st.push(s.charAt(i));
+            }
+            if(!st.isEmpty())
+            {
+                if(st.peek()=='{' && c=='}') 
+                {
+                  st.pop();
+                }
+                else if(st.peek()=='[' && c==']')
+                {
+                  st.pop();
+                }
+                else if(st.peek()=='(' && c==')')
+                {
+                  st.pop();
+                }
+            }
+        }
+        return st.size()==0;
+    }
+    public static void main(String[] args) 
+    {
+       String s= "[{{{}}}]()";
+       System.out.print(balancedOrNot(s));
+    }
+}

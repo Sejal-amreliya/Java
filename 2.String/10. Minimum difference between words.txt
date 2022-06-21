@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+class Main
+{   
+     
+     public static void main(String[] args) 
+     {
+         
+        String[] strs={ "the", "quick", "brown", "fox", "quick"};
+        String word1="quick";
+        String word2="fox";
+        int i1=-1,i2=-1,min=Integer.MAX_VALUE;
+
+        for(int i=0;i<strs.length;i++)
+        {
+            if(strs[i].equals(word1))
+            {
+                i1=i;
+            }
+            if(strs[i].equals(word2))
+            {
+                i2=i;
+            }
+
+            if(i1 != -1 && i2 != -1)
+            {
+                min= Math.min(min , Math.abs(i1-i2));
+            }
+        }
+        System.out.print(min);
+     }
+     
+}
