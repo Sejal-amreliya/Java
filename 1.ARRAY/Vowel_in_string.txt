@@ -1,0 +1,18 @@
+vowel present in string
+
+class Ideone
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		String str="sejal";
+		for(int i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)=='a' || str.charAt(i)=='e' || str.charAt(i)=='i' || str.charAt(i)=='o' || str.charAt(i)=='u')
+			{
+				System.out.print(str.charAt(i) +" ");
+			}
+		}
+		
+	}
+}

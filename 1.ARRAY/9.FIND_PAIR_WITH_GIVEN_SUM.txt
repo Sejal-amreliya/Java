@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+class Main
+{   
+     
+    public static void main(String[] args)
+    {
+      int[] arr= { 1, 4, 45, 6, 10, 8 };
+      int n=arr.length;
+      int k = 16;
+      for(int i=0;i<n-1;i++)
+      {
+        for(int j=i+1;j<n;j++)
+        {
+          if(arr[i]+arr[j]==k)
+          {
+            System.out.print("Pairs("+arr[i]+" "+arr[j]+")");
+          }
+        }
+      }
+    } 
+}
+
+TIME COMPLEXITY==O(N^2)
+SPACE COMPLEXITY==O(1)
+
+==============================================================================================================================
+
+import java.io.*;
+import java.util.*;
+
+class Main
+{   
+     
+    public static void main(String[] args)
+    {
+      HashSet<Integer>  s= new HashSet<>();
+      int[] arr= { 1, 4, 45, 6, 10, 8 };
+      int n=arr.length;
+      int k = 16;
+      for(int i=0;i<n-1;i++)
+      {
+        int temp=k-arr[i];
+        if(s.contains(temp))
+        {
+          System.out.println("Pair with given sum "+k+" is ("+arr[i]+" , "+temp+")");
+        }
+        s.add(arr[i]);
+      }
+    } 
+}
+TIME COMPLEXITY==O(N)
+SPACE COMPLEXITY==O(N)
+
